@@ -1,4 +1,4 @@
-import HomeScreen from "@/components/Home2";
+import HomeScreen from "@/components/Home3";
 import React from "react";
 
 export default function Home() {
