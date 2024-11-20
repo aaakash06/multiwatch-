@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { formatTime, formatTime } from "@/lib/utils";
 
 interface Tempus {
   name: string;
