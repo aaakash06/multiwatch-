@@ -26,28 +26,16 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-interface Wallet {
-  publicKey: string;
-  privateKey: string;
-  mnemonic: string;
-  path: string;
+interface Tempus {
+  name: string;
+  description: string;
+  time: string;
 }
 
 const Main = () => {
-  const [mnemonicWords, setMnemonicWords] = useState<string[]>(
-    Array(12).fill(" ")
-  );
-  const [pathTypes, setPathTypes] = useState<string[]>([]);
-  const [wallets, setWallets] = useState<Wallet[]>([]);
-  const [showMnemonic, setShowMnemonic] = useState<boolean>(false);
-  const [mnemonicInput, setMnemonicInput] = useState<string>("");
-  const [visiblePrivateKeys, setVisiblePrivateKeys] = useState<boolean[]>([]);
-  const [visiblePhrases, setVisiblePhrases] = useState<boolean[]>([]);
+  const [tempus, setTempus] = useState<Tempus[]>([]);
+
   const [gridView, setGridView] = useState<boolean>(false);
-  const pathTypeNames: { [key: string]: string } = {
-    "501": "Solana",
-    "60": "Ethereum",
-  };
 
   const container = {
     hidden: { opacity: 0 },
@@ -64,8 +52,6 @@ const Main = () => {
     hidden: { opacity: 0 },
     show: { opacity: 1 },
   };
-
-  const pathTypeName = pathTypeNames[pathTypes[0]] || "";
 
   useEffect(() => {
     const storedWallets = localStorage.getItem("wallets");
@@ -392,10 +378,10 @@ const Main = () => {
         >
           <div className="flex md:flex-row flex-col justify-between w-full gap-4 md:items-center">
             <h2 className="tracking-tighter text-3xl md:text-4xl font-extrabold">
-              Wallet
+              Tempus
             </h2>
             <div className="flex gap-2">
-              {wallets.length > 1 && (
+              {tempus.length > 1 && (
                 <Button
                   variant={"ghost"}
                   onClick={() => setGridView(!gridView)}
