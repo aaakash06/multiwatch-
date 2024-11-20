@@ -33,7 +33,7 @@ interface Tempus {
 }
 
 const Main = () => {
-  const [tempus, setTempus] = useState<Tempus[]>([]);
+  const [clocks, setClocks] = useState<Tempus[]>([]);
 
   const [gridView, setGridView] = useState<boolean>(false);
 
@@ -207,6 +207,15 @@ const Main = () => {
       toast.success("Wallet generated successfully!");
     }
   };
+
+  const handleAddClock = () => {
+    const updatedClocks = [
+      ...clocks,
+      { name: "New Clock", description: "New Clock", time: "00:00" },
+    ];
+    setClocks(updatedClocks);
+  };
+
   return (
     <div className="flex flex-col gap-4">
       {/* {wallets.length === 0 && (
@@ -381,7 +390,7 @@ const Main = () => {
               Tempus
             </h2>
             <div className="flex gap-2">
-              {tempus.length > 1 && (
+              {clocks.length > 1 && (
                 <Button
                   variant={"ghost"}
                   onClick={() => setGridView(!gridView)}
@@ -390,7 +399,7 @@ const Main = () => {
                   {gridView ? <Grid2X2 /> : <List />}
                 </Button>
               )}
-              <Button onClick={() => handleAddWallet()}>Add Wallet</Button>
+              <Button onClick={() => handleAddClock()}>Add Clock</Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="destructive" className="self-end">
