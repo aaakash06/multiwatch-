@@ -19,7 +19,7 @@ import {
 interface Tempus {
   name: string;
   description: string;
-  time: string;
+  time: number; // in seconds
 }
 
 const Main = () => {
@@ -59,7 +59,7 @@ const Main = () => {
   const handleAddClock = () => {
     const updatedClocks = [
       ...clocks,
-      { name: "New Clock", description: "New Clock", time: "00:00" },
+      { name: "New Clock", description: "New Clock", time: 0 },
     ];
     localStorage.setItem("clocks", JSON.stringify(updatedClocks));
     setClocks(updatedClocks);
