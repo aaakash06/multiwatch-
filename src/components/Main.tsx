@@ -213,7 +213,15 @@ const Main = () => {
       ...clocks,
       { name: "New Clock", description: "New Clock", time: "00:00" },
     ];
+    localStorage.setItem("clocks", JSON.stringify(updatedClocks));
     setClocks(updatedClocks);
+    toast.success("Clock added successfully!");
+  };
+
+  const handleClearClocks = () => {
+    localStorage.removeItem("clocks");
+    setClocks([]);
+    toast.success("All clocks cleared.");
   };
 
   return (
@@ -418,7 +426,7 @@ const Main = () => {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => handleClearWallets()}>
+                    <AlertDialogAction onClick={() => handleClearClocks()}>
                       Delete
                     </AlertDialogAction>
                   </AlertDialogFooter>
