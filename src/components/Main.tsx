@@ -3,7 +3,14 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { LayoutGrid, LayoutList, Trash } from "lucide-react";
+import {
+  LayoutGrid,
+  LayoutList,
+  PauseCircle,
+  PlayCircle,
+  RefreshCcw,
+  Trash,
+} from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,12 +28,131 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 interface Tempus {
   name: string;
   description: string;
   time: number; // in seconds
 }
+
+const TimerCard = ({
+  id,
+  onAdd,
+  onRemove,
+  hasTimer,
+}: {
+  id: number;
+  onAdd: (id: number) => void;
+  onRemove: (id: number) => void;
+  hasTimer: boolean;
+}) => {
+  const [seconds, setSeconds] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    let interval = null;
+    if (isActive && !isPaused) {
+      interval = setInterval(() => {
+        setSeconds((seconds) => seconds + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, isPaused]);
+
+  const handleStart = () => {
+    setIsActive(true);
+    setIsPaused(false);
+  };
+
+  const handlePause = () => {
+    setIsPaused(true);
+  };
+
+  const handleReset = () => {
+    setSeconds(0);
+    setIsActive(false);
+    setIsPaused(false);
+  };
+
+  return (
+    <Card className="transition-all duration-300 hover:shadow-lg">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">Timer {id}</CardTitle>
+        <Badge variant="secondary">{hasTimer ? "Active" : "Inactive"}</Badge>
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold text-center my-4">
+          {formatTime(seconds)}
+        </div>
+        {hasTimer ? (
+          <div className="space-y-3">
+            <div className="flex justify-center space-x-2">
+              {!isActive || isPaused ? (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={handleStart}
+                      >
+                        <PlayCircle className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Start Timer</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ) : (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={handlePause}
+                      >
+                        <PauseCircle className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Pause Timer</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" onClick={handleReset}>
+                      <RefreshCcw className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Reset Timer</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <Button
+              variant="destructive"
+              className="w-full"
+              onClick={() => onRemove(id)}
+            >
+              Remove Timer
+            </Button>
+          </div>
+        ) : (
+          <Button
+            variant="default"
+            className="w-full"
+            onClick={() => onAdd(id)}
+          >
+            Add Timer
+          </Button>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
 
 const Main = () => {
   const [clocks, setClocks] = useState<Tempus[]>([]);
