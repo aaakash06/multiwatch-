@@ -494,68 +494,7 @@ const Main = () => {
                   </AlertDialog>
                 </div>
                 <div className="flex flex-col gap-8 px-8 py-4 rounded-2xl bg-secondary/50">
-                  <div
-                    className="flex flex-col w-full gap-2"
-                    onClick={() => copyToClipboard(wallet.publicKey)}
-                  >
-                    <span className="text-lg md:text-xl font-bold tracking-tighter">
-                      Public Key
-                    </span>
-                    <p className="text-primary/80 font-medium cursor-pointer hover:text-primary transition-all duration-300 truncate">
-                      {wallet.publicKey}
-                    </p>
-                  </div>
-                  <div className="flex flex-col w-full gap-2">
-                    <span className="text-lg md:text-xl font-bold tracking-tighter">
-                      Private Key
-                    </span>
-                    <div className="flex justify-between w-full items-center gap-2">
-                      <p
-                        onClick={() => copyToClipboard(wallet.privateKey)}
-                        className="text-primary/80 font-medium cursor-pointer hover:text-primary transition-all duration-300 truncate"
-                      >
-                        {visiblePrivateKeys[index]
-                          ? wallet.privateKey
-                          : "•".repeat(wallet.mnemonic.length)}
-                      </p>
-                      <Button
-                        variant="ghost"
-                        onClick={() => togglePrivateKeyVisibility(index)}
-                      >
-                        {visiblePrivateKeys[index] ? (
-                          <EyeOff className="size-4" />
-                        ) : (
-                          <Eye className="size-4" />
-                        )}
-                      </Button>
-                    </div>
-                  </div>
-                  {/* <div className="flex flex-col w-full gap-2">
-                    <span className="text-lg md:text-xl font-bold tracking-tighter">
-                      Secret Phrase
-                    </span>
-                    <div className="flex justify-between w-full items-center gap-2">
-                      <p
-                        onClick={() => copyToClipboard(wallet.mnemonic)}
-                        className="text-primary/80 font-medium cursor-pointer hover:text-primary transition-all duration-300 truncate"
-                      >
-                        {visiblePhrases[index]
-                          ? wallet.mnemonic
-                          : "•".repeat(wallet.mnemonic.length)}
-                      </p>
-
-                      <Button
-                        variant="ghost"
-                        onClick={() => togglePhraseVisibility(index)}
-                      >
-                        {visiblePhrases[index] ? (
-                          <EyeOff className="size-4" />
-                        ) : (
-                          <Eye className="size-4" />
-                        )}
-                      </Button>
-                    </div>
-                  </div> */}
+                  {/* clock logic */}
                 </div>
               </motion.div>
             ))}
