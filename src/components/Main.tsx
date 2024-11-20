@@ -439,7 +439,7 @@ const Main = () => {
               gridView ? "md:grid-cols-2 lg:grid-cols-3" : ""
             }`}
           >
-            {wallets.map((wallet: any, index: number) => (
+            {clocks.map((clock: Tempus, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: -20 }}
@@ -453,7 +453,7 @@ const Main = () => {
               >
                 <div className="flex justify-between px-8 py-6">
                   <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
-                    Wallet {index + 1}
+                    Clock {index + 1}
                   </h3>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -477,7 +477,7 @@ const Main = () => {
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction
-                          onClick={() => handleDeleteWallet(index)}
+                          onClick={() => handleDeleteClock(index)}
                           className="text-destructive"
                         >
                           Delete
