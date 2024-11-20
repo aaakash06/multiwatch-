@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/components/themeprovider";
+import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/Footer";
-
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
