@@ -223,7 +223,7 @@ const Main = () => {
   };
   return (
     <div className="flex flex-col gap-4">
-      {wallets.length === 0 && (
+      {/* {wallets.length === 0 && (
         <motion.div
           className="flex flex-col gap-4"
           initial={{ opacity: 0, y: -20 }}
@@ -311,10 +311,10 @@ const Main = () => {
             )}
           </div>
         </motion.div>
-      )}
+      )} */}
 
       {/* Display Secret Phrase */}
-      {mnemonicWords && wallets.length > 0 && (
+      {/* {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -376,10 +376,10 @@ const Main = () => {
             </motion.div>
           )}
         </motion.div>
-      )}
+      } */}
 
       {/* Display wallet pairs */}
-      {wallets.length > 0 && (
+      {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -392,7 +392,7 @@ const Main = () => {
         >
           <div className="flex md:flex-row flex-col justify-between w-full gap-4 md:items-center">
             <h2 className="tracking-tighter text-3xl md:text-4xl font-extrabold">
-              {pathTypeName} Wallet
+              Wallet
             </h2>
             <div className="flex gap-2">
               {wallets.length > 1 && (
@@ -551,7 +551,7 @@ const Main = () => {
             ))}
           </div>
         </motion.div>
-      )}
+      }
     </div>
   );
 };
