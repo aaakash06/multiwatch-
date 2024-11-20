@@ -474,11 +474,11 @@ const Main = () => {
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle>
-                          Are you sure you want to delete all wallets?
+                          Are you sure you want to delete this clock?
                         </AlertDialogTitle>
                         <AlertDialogDescription>
                           This action cannot be undone. This will permanently
-                          delete your wallets and keys from local storage.
+                          delete this clock from local storage.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
