@@ -224,6 +224,13 @@ const Main = () => {
     toast.success("All clocks cleared.");
   };
 
+  const handleDeleteClock = (index: number) => {
+    const updatedClocks = [...clocks].filter((_, i) => i !== index);
+    localStorage.setItem("clocks", JSON.stringify(updatedClocks));
+    setClocks(updatedClocks);
+    toast.success("Clock deleted successfully!");
+  };
+
   return (
     <div className="flex flex-col gap-4">
       {/* {wallets.length === 0 && (
