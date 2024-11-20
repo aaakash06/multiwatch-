@@ -54,159 +54,17 @@ const Main = () => {
   };
 
   useEffect(() => {
-    const storedWallets = localStorage.getItem("wallets");
-    const storedMnemonic = localStorage.getItem("mnemonics");
-    const storedPathTypes = localStorage.getItem("pathTypes");
+    const storedClocks = localStorage.getItem("clocks");
 
-    if (storedWallets && storedMnemonic && storedPathTypes) {
-      setMnemonicWords(JSON.parse(storedMnemonic));
-      setWallets(JSON.parse(storedWallets));
-      setPathTypes(JSON.parse(storedPathTypes));
-      setVisiblePrivateKeys(JSON.parse(storedWallets).map(() => false));
-      // setVisiblePhrases(JSON.parse(storedWallets).map(() => false));
+    if (storedClocks) {
+      setClocks(JSON.parse(storedClocks));
     }
   }, []);
 
-  const handleDeleteWallet = (index: number) => {
-    const updatedWallets = [...wallets].filter((_, i) => i !== index);
-    const updatedPaths = [...pathTypes].filter((_, i) => i !== index);
-    setWallets(updatedWallets);
-    setPathTypes(updatedPaths);
-    localStorage.setItem("wallets", JSON.stringify(updatedWallets));
-    localStorage.setItem("pathTypes", JSON.stringify(updatedPaths));
-    setVisiblePrivateKeys((prev) => [...prev].filter((_, i) => i !== index));
-    // setVisiblePhrases((prev) => [...prev].filter((_, i) => i !== index));
-    toast.success("Wallet deleted successfully!");
-  };
-
-  const handleClearWallets = () => {
-    localStorage.removeItem("wallets");
-    localStorage.removeItem("mnemonics");
-    localStorage.removeItem("pathTypes");
-    setWallets([]);
-    setMnemonicWords([]);
-    setPathTypes([]);
-    setVisiblePrivateKeys([]);
-    setVisiblePhrases([]);
-    toast.success("All wallets cleared.");
-  };
-
-  const copyToClipboard = (content: string) => {
-    navigator.clipboard.writeText(content);
-    toast.success("Copied to clipboard!");
-  };
-
-  const togglePrivateKeyVisibility = (index: number) => {
-    setVisiblePrivateKeys((prev) =>
-      [...prev].map((visible, i) => (i === index ? !visible : visible))
-    );
-  };
-
-  const togglePhraseVisibility = (index: number) => {
-    setVisiblePhrases((prev) =>
-      [...prev].map((visible, i) => (i === index ? !visible : visible))
-    );
-  };
-
-  const generateWalletFromMnemonic = (
-    pathType: string,
-    mnemonic: string,
-    accountIndex: number
-  ): Wallet | null => {
-    try {
-      const seedBuffer = mnemonicToSeedSync(mnemonic);
-      const path = `m/44'/${pathType}'/0'/${accountIndex}'`;
-      const { key: derivedSeed } = derivePath(path, seedBuffer.toString("hex"));
-
-      let publicKeyEncoded: string;
-      let privateKeyEncoded: string;
-
-      if (pathType === "501") {
-        // Solana
-        const { secretKey } = nacl.sign.keyPair.fromSeed(derivedSeed);
-        const keypair = Keypair.fromSecretKey(secretKey);
-
-        privateKeyEncoded = bs58.encode(secretKey);
-        publicKeyEncoded = keypair.publicKey.toBase58();
-      } else if (pathType === "60") {
-        // Ethereum
-        const privateKey = Buffer.from(derivedSeed).toString("hex");
-        privateKeyEncoded = privateKey;
-
-        const wallet = new ethers.Wallet(privateKey);
-        publicKeyEncoded = wallet.address;
-      } else {
-        toast.error("Unsupported path type.");
-        return null;
-      }
-
-      return {
-        publicKey: publicKeyEncoded,
-        privateKey: privateKeyEncoded,
-        mnemonic,
-        path,
-      };
-    } catch (error) {
-      toast.error("Failed to generate wallet. Please try again.");
-      return null;
-    }
-  };
-
-  const handleGenerateWallet = () => {
-    let mnemonic = mnemonicInput.trim();
-
-    if (mnemonic) {
-      if (!validateMnemonic(mnemonic)) {
-        toast.error("Invalid recovery phrase. Please try again.");
-        return;
-      }
-    } else {
-      mnemonic = generateMnemonic();
-    }
-
-    const words = mnemonic.split(" ");
-    setMnemonicWords(words);
-
-    const wallet = generateWalletFromMnemonic(
-      pathTypes[0],
-      mnemonic,
-      wallets.length
-    );
-    if (wallet) {
-      const updatedWallets = [wallet];
-      setWallets(updatedWallets);
-      localStorage.setItem("wallets", JSON.stringify(updatedWallets));
-      localStorage.setItem("mnemonics", JSON.stringify(words));
-      localStorage.setItem("pathTypes", JSON.stringify(pathTypes));
-      setVisiblePrivateKeys((prev) => [...prev, false]);
-      // setVisiblePhrases([...visiblePhrases, false]);
-      toast.success("Wallet generated successfully!");
-    }
-  };
-
-  const handleAddWallet = () => {
-    if (!mnemonicWords) {
-      toast.error("No mnemonic found. Please generate a wallet first.");
-      return;
-    }
-
-    const wallet = generateWalletFromMnemonic(
-      pathTypes[0],
-      mnemonicWords.join(" "),
-      wallets.length
-    );
-    if (wallet) {
-      const updatedWallets = [...wallets, wallet];
-      const updatedPathType = [...pathTypes, pathTypes[0]];
-      setWallets(updatedWallets);
-      setPathTypes(updatedPathType);
-      localStorage.setItem("wallets", JSON.stringify(updatedWallets));
-      localStorage.setItem("pathTypes", JSON.stringify(updatedPathType));
-      setVisiblePrivateKeys([...visiblePrivateKeys, false]);
-      // setVisiblePhrases([...visiblePhrases, false]);
-      toast.success("Wallet generated successfully!");
-    }
-  };
+  // const copyToClipboard = (content: string) => {
+  //   navigator.clipboard.writeText(content);
+  //   toast.success("Copied to clipboard!");
+  // };
 
   const handleAddClock = () => {
     const updatedClocks = [
