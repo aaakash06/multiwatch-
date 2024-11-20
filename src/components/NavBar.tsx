@@ -5,7 +5,7 @@ import { ModeToggle } from "@/components/ui/theme-button";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between items-center py-4 ">
+    <nav className="flex justify-between items-center py-7 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex items-center gap-2 group">
         <Box className="size-8   animate-hoverEffect " />
         <div className="flex flex-col gap-4">
