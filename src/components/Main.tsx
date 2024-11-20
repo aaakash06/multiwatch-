@@ -25,7 +25,7 @@ interface Tempus {
 const Main = () => {
   const [clocks, setClocks] = useState<Tempus[]>([]);
 
-  const [gridView, setGridView] = useState<boolean>(false);
+  const [gridView, setGridView] = useState<boolean>(true);
 
   // const container = {
   //   hidden: { opacity: 0 },
