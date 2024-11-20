@@ -266,6 +266,7 @@ const Main = () => {
                       <Button
                         variant="outline"
                         size="icon"
+                        className="bg-transparent border-0"
                         onClick={() => setGridView(!gridView)}
                       >
                         {gridView ? (
