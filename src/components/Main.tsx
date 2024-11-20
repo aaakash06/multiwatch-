@@ -2,18 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import {
-  ChevronDown,
-  ChevronUp,
-  Copy,
-  Eye,
-  EyeOff,
-  Grid2X2,
-  List,
-  Trash,
-} from "lucide-react";
+import { Grid2X2, List, Trash } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -37,21 +27,21 @@ const Main = () => {
 
   const [gridView, setGridView] = useState<boolean>(false);
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  // const container = {
+  //   hidden: { opacity: 0 },
+  //   show: {
+  //     opacity: 1,
+  //     transition: {
+  //       delayChildren: 0.3,
+  //       staggerChildren: 0.1,
+  //     },
+  //   },
+  // };
 
-  const item = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1 },
-  };
+  // const item = {
+  //   hidden: { opacity: 0 },
+  //   show: { opacity: 1 },
+  // };
 
   useEffect(() => {
     const storedClocks = localStorage.getItem("clocks");
