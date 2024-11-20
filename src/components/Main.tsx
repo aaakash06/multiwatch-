@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { Grid2X2, List, Trash } from "lucide-react";
+import { LayoutGrid, LayoutList, Trash } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,6 +15,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface Tempus {
   name: string;
@@ -254,14 +260,32 @@ const Main = () => {
             </h2>
             <div className="flex gap-2">
               {clocks.length > 1 && (
-                <Button
-                  variant={"ghost"}
-                  onClick={() => setGridView(!gridView)}
-                  className="hidden md:block"
-                >
-                  {gridView ? <Grid2X2 /> : <List />}
-                </Button>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => setGridView(!gridView)}
+                      >
+                        {gridView ? (
+                          <LayoutGrid
+                            className={`h-4 w-4 ${!gridView && "text-primary"}`}
+                          />
+                        ) : (
+                          <LayoutList
+                            className={`h-4 w-4 ${!gridView && "text-primary"}`}
+                          />
+                        )}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      {gridView ? "List View" : "Grid View"}
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
+
               <Button onClick={() => handleAddClock()}>Add Clock</Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
