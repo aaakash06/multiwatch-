@@ -411,17 +411,17 @@ const Main = () => {
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="destructive" className="self-end">
-                    Clear Wallets
+                    Clear Clocks
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
-                      Are you sure you want to delete all wallets?
+                      Are you sure you want to delete all clocks?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                       This action cannot be undone. This will permanently delete
-                      your wallets and keys from local storage.
+                      your clocks from local storage.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
