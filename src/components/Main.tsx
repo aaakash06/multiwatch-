@@ -84,7 +84,7 @@ const Main = () => {
               Tempus
             </h2>
             <div className="flex gap-2">
-              {clocks.length > 1 && (
+              {/* {clocks.length > 1 && (
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -110,7 +110,7 @@ const Main = () => {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-              )}
+              )} */}
 
               <Button onClick={() => handleAddClock()}>Add Clock</Button>
               <AlertDialog>
