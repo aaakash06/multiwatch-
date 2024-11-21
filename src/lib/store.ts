@@ -17,6 +17,7 @@ const storeObject: StateCreator<ClockStore> = (set, get) => ({
     set((state) => ({
       activeClocks: state.activeClocks.filter((_, i) => i !== index),
     })),
+  getClock: (index: number) => get().clocks.find((_, i) => i === index),
 });
 
 const useClockStore = create(persist(storeObject, { name: "clock-store" }));
