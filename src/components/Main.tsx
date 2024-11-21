@@ -83,12 +83,12 @@ const TimerCard = ({
   };
 
   return (
-    <Card className="transition-all duration-300 bg-transparent border-0">
+    <Card className="transition-all duration-300 bg-transparent border-0 shadow-none ">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         {/* <Badge variant="secondary">{hasTimer ? "Active" : "Inactive"}</Badge> */}
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold text-center my-4">
+        <div className="text-4xl font-bold text-center my-4">
           {formatTime(seconds)}
         </div>
 
@@ -333,7 +333,7 @@ const Main = () => {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-                <div className=" py-4 rounded-2xl ">
+                <div className=" pb-4 rounded-2xl bg-yellow-500">
                   <TimerCard
                     key={index}
                     id={index}
