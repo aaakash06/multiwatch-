@@ -7,7 +7,12 @@ import { formatTime } from "@/lib/utils";
 const CentisecondTimer = ({ id }: { id: number }) => {
   const { getClock, setClock } = useClockStore();
   const clock = getClock(id);
-  const [centiseconds, setCentiseconds] = useState(0);
+  const [centiseconds, setCentiseconds] = useState(clock.centiseconds || 0);
+  useEffect(() => {
+    console.log(clock.isActive, "isActive");
+
+    console.log(clock.centiseconds, "centiseconds");
+  }, [clock.centiseconds]);
 
   useEffect(() => {
     const handleBeforeUnload = (event: Event) => {

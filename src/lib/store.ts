@@ -14,6 +14,7 @@ const storeObject: StateCreator<ClockStore> = (set, get) => ({
           description: "New Clock",
           centiseconds: 0,
           isActive: false,
+          reset: false,
         },
       ],
     })),
@@ -34,6 +35,12 @@ const storeObject: StateCreator<ClockStore> = (set, get) => ({
     })),
   isRehydrating: true,
   setIsRehydrating: (value: boolean) => set({ isRehydrating: value }),
+  setReset: (index: number) =>
+    set((state) => ({
+      clocks: state.clocks.map((c, i) =>
+        i === index ? { ...c, reset: !c.reset } : c
+      ),
+    })),
 });
 
 const useClockStore = create(
