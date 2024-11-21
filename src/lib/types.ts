@@ -12,7 +12,7 @@ export interface ClockStore {
   activeClocks: Clock[];
   addActiveClock: (clock: Clock) => void;
   removeActiveClock: (index: number) => void;
-  getClock: (index: number) => Clock | undefined;
+  getClock: (index: number) => Clock;
   setClock: (index: number, clock: Clock) => void;
   isRehydrating: boolean;
   setIsRehydrating: (value: boolean) => void;
