@@ -31,7 +31,8 @@ import {
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatTime } from "@/lib/utils";
-import { Clock, Clock } from "@/lib/types";
+import { Clock } from "@/lib/types";
+import useClockStore from "@/lib/store";
 
 const TimerCard = ({
   id,
@@ -137,8 +138,7 @@ const TimerCard = ({
 };
 
 const Main = () => {
-  const [clocks, setClocks] = useState<Clock[]>([]);
-
+  const { clocks, addClock } = useClockStore();
   const [gridView, setGridView] = useState<boolean>(true);
 
   // const container = {
@@ -157,38 +157,28 @@ const Main = () => {
   //   show: { opacity: 1 },
   // };
 
-  useEffect(() => {
-    const storedClocks = localStorage.getItem("clocks");
-
-    if (storedClocks) {
-      setClocks(JSON.parse(storedClocks));
-    }
-  }, []);
-
   // const copyToClipboard = (content: string) => {
   //   navigator.clipboard.writeText(content);
   //   toast.success("Copied to clipboard!");
   // };
 
   const handleAddClock = () => {
-    const updatedClocks = [
-      ...clocks,
-      { name: "New Clock", description: "New Clock", time: 0 },
-    ];
-    localStorage.setItem("clocks", JSON.stringify(updatedClocks));
-    setClocks(updatedClocks);
+    addClock({
+      name: "New Clock",
+      description: "New Clock",
+      seconds: 0,
+      isActive: false,
+    });
     toast.success("Clock added successfully!");
   };
 
   const handleClearClocks = () => {
-    localStorage.removeItem("clocks");
     setClocks([]);
     toast.success("All clocks cleared.");
   };
 
   const handleDeleteClock = (index: number) => {
     const updatedClocks = [...clocks].filter((_, i) => i !== index);
-    localStorage.setItem("clocks", JSON.stringify(updatedClocks));
     setClocks(updatedClocks);
     toast.success("Clock deleted successfully!");
   };
