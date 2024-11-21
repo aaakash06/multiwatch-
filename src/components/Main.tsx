@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { cn, formatTime } from "@/lib/utils";
+import { formatTime } from "@/lib/utils";
 
 interface Tempus {
   name: string;
@@ -352,22 +352,13 @@ const Main = () => {
                   </AlertDialog>
                 </div>
                 <div className="flex flex-col gap-8 px-8 py-4 rounded-2xl bg-secondary/50">
-                  <div
-                    className={cn(
-                      "grid gap-6 transition-all duration-300",
-                      gridView
-                        ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-                        : "grid-cols-1"
-                    )}
-                  >
-                    <TimerCard
-                      key={index}
-                      id={index}
-                      hasTimer={activeTimers.includes(index)}
-                      onAdd={handleAddTimer}
-                      onRemove={handleRemoveTimer}
-                    />
-                  </div>
+                  <TimerCard
+                    key={index}
+                    id={index}
+                    hasTimer={activeTimers.includes(index)}
+                    onAdd={handleAddTimer}
+                    onRemove={handleRemoveTimer}
+                  />
                 </div>
               </motion.div>
             ))}
