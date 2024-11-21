@@ -17,14 +17,23 @@ const TimerCard = ({ id }: { id: number }) => {
   const clock = getClock(id);
   const [seconds, setSeconds] = useState(clock.seconds || 0);
 
+  // useEffect(() => {
+  //   const handleUnload = (event: BeforeUnloadEvent) => {
+  //     event.preventDefault();
+  //     setClock(id, { ...clock, isActive: false, seconds: seconds });
+  //   };
+  //   window.addEventListener("beforeunload", handleUnload);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleUnload);
+  //   };
+  // }, []);
   useEffect(() => {
-    const handleUnload = () => {
+    const handleBeforeUnload = (event: Event) => {
+      event.preventDefault();
       setClock(id, { ...clock, isActive: false, seconds: seconds });
     };
-    document.addEventListener("onunload", handleUnload);
-    return () => {
-      document.removeEventListener("onunload", handleUnload);
-    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, []);
 
   useEffect(() => {
