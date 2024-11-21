@@ -9,4 +9,7 @@ export interface ClockStore {
   addClock: (clock: Clock) => void;
   deleteClock: (index: number) => void;
   clearClocks: () => void;
+  activeClocks: Clock[];
+  addActiveClock: (clock: Clock) => void;
+  removeActiveClock: (index: number) => void;
 }
