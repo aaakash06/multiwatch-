@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 // import { Badge } from "@/components/ui/badge";
 import { formatTime } from "@/lib/utils";
 import useClockStore from "@/lib/store";
-import { isAbsolute } from "path";
+import CentisecondTimer from "./CentiSecondTimer";
 const TimerCard = ({ id }: { id: number }) => {
   const { getClock, setClock } = useClockStore();
   const clock = getClock(id);
@@ -35,6 +35,9 @@ const TimerCard = ({ id }: { id: number }) => {
         setSeconds((seconds) => seconds + 1);
       }, 1000);
     }
+    const interval2 = setInterval(() => {
+      setMilliseconds((milliseconds) => milliseconds + 10);
+    }, 100);
     return () => {
       if (interval) {
         clearInterval(interval);
@@ -63,6 +66,7 @@ const TimerCard = ({ id }: { id: number }) => {
       <CardContent>
         <div className="text-4xl font-bold text-center my-4">
           {formatTime(seconds)}
+          <CentisecondTimer id={id} />
         </div>
 
         <div className="space-y-3 mt-7">

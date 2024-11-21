@@ -21,8 +21,8 @@ const CentisecondTimer = ({ id }: { id: number }) => {
     let interval = null;
     if (clock.isActive) {
       interval = setInterval(() => {
-        setCentiseconds((centiseconds) => centiseconds + 1);
-      }, 100);
+        setCentiseconds((centiseconds) => (centiseconds + 1) % 100);
+      }, 10);
     }
     return () => {
       if (interval) {
@@ -31,7 +31,7 @@ const CentisecondTimer = ({ id }: { id: number }) => {
     };
   }, [clock.isActive]);
 
-  return <div>{centiseconds}</div>;
+  return <div>{centiseconds.toString().padStart(2, "0")}</div>;
 };
 
 export default CentisecondTimer;
