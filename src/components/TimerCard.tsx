@@ -65,7 +65,6 @@ const TimerCard = ({ id }: { id: number }) => {
       </CardHeader>
       <CardContent>
         <div className="text-4xl font-bold text-center my-4">
-          {formatTime(seconds)}
           <CentisecondTimer id={id} />
         </div>
 
