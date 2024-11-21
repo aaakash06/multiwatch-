@@ -7,6 +7,7 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -18,7 +19,13 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 // Sortable grid item component
-const SortableGridItem = ({ id, children }) => {
+const SortableGridItem = ({
+  id,
+  children,
+}: {
+  id: string;
+  children: React.ReactNode;
+}) => {
   const {
     attributes,
     listeners,
@@ -68,13 +75,13 @@ const DraggableGrid = () => {
   );
 
   // Handle drag end event
-  const handleDragEnd = (event) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    if (active.id !== over.id) {
+    if (active.id !== over?.id) {
       setGridItems((items) => {
         const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
+        const newIndex = items.findIndex((item) => item.id === over?.id);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
