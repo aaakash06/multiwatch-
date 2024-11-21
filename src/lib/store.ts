@@ -18,8 +18,17 @@ const storeObject: StateCreator<ClockStore> = (set, get) => ({
       activeClocks: state.activeClocks.filter((_, i) => i !== index),
     })),
   getClock: (index: number) => get().clocks.find((_, i) => i === index),
+  isRehydrating: true,
+  setIsRehydrating: (value: boolean) => set({ isRehydrating: value }),
 });
 
-const useClockStore = create(persist(storeObject, { name: "clock-store" }));
+const useClockStore = create(
+  persist(storeObject, {
+    name: "clock-store",
+    onRehydrateStorage: () => (state) => {
+      state?.setIsRehydrating(false);
+    },
+  })
+);
 
 export default useClockStore;

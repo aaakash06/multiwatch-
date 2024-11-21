@@ -13,4 +13,6 @@ export interface ClockStore {
   addActiveClock: (clock: Clock) => void;
   removeActiveClock: (index: number) => void;
   getClock: (index: number) => void;
+  isRehydrating: boolean;
+  setIsRehydrating: (value: boolean) => void;
 }
