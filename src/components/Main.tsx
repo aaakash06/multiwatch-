@@ -34,99 +34,6 @@ import { formatTime } from "@/lib/utils";
 import { Clock } from "@/lib/types";
 import useClockStore from "@/lib/store";
 
-const TimerCard = ({ id }: { id: number }) => {
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    let interval = null;
-    if (isActive && !isPaused) {
-      interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
-      }, 1000);
-    }
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
-  }, [isActive, isPaused]);
-
-  const handleStart = () => {
-    setIsActive(true);
-    setIsPaused(false);
-  };
-
-  const handlePause = () => {
-    setIsPaused(true);
-  };
-
-  const handleReset = () => {
-    setSeconds(0);
-    setIsActive(false);
-    setIsPaused(false);
-  };
-
-  return (
-    <Card className="transition-all duration-300 bg-transparent border-0 shadow-none ">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        {/* <Badge variant="secondary">{hasTimer ? "Active" : "Inactive"}</Badge> */}
-      </CardHeader>
-      <CardContent>
-        <div className="text-4xl font-bold text-center my-4">
-          {formatTime(seconds)}
-        </div>
-
-        <div className="space-y-3">
-          <div className="flex justify-center space-x-2">
-            {!isActive || isPaused ? (
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" onClick={handleStart}>
-                      <PlayCircle className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Start Timer</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            ) : (
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" onClick={handlePause}>
-                      <PauseCircle className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Pause Timer</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            )}
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" size="icon" onClick={handleReset}>
-                    <RefreshCcw className="h-4 w-4" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Reset Timer</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-          {/* <Button
-            variant="destructive"
-            className="w-full"
-            onClick={() => onRemove(id)}
-          >
-            Remove Timer
-          </Button> */}
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
 const Main = () => {
   const { clocks, addClock, deleteClock, clearClocks } = useClockStore();
   const [gridView, setGridView] = useState<boolean>(true);
@@ -171,9 +78,107 @@ const Main = () => {
     deleteClock(index);
     toast.success("Clock deleted successfully!");
   };
-  };
 
-  
+  const TimerCard = ({ id }: { id: number }) => {
+    const [seconds, setSeconds] = useState(0);
+    const [isActive, setIsActive] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+
+    useEffect(() => {
+      let interval = null;
+      if (isActive && !isPaused) {
+        interval = setInterval(() => {
+          setSeconds((seconds) => seconds + 1);
+        }, 1000);
+      }
+      return () => {
+        if (interval) {
+          clearInterval(interval);
+        }
+      };
+    }, [isActive, isPaused]);
+
+    const handleStart = () => {
+      setIsActive(true);
+      setIsPaused(false);
+    };
+
+    const handlePause = () => {
+      setIsPaused(true);
+    };
+
+    const handleReset = () => {
+      setSeconds(0);
+      setIsActive(false);
+      setIsPaused(false);
+    };
+
+    return (
+      <Card className="transition-all duration-300 bg-transparent border-0 shadow-none ">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          {/* <Badge variant="secondary">{hasTimer ? "Active" : "Inactive"}</Badge> */}
+        </CardHeader>
+        <CardContent>
+          <div className="text-4xl font-bold text-center my-4">
+            {formatTime(seconds)}
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-center space-x-2">
+              {!isActive || isPaused ? (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={handleStart}
+                      >
+                        <PlayCircle className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Start Timer</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ) : (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={handlePause}
+                      >
+                        <PauseCircle className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Pause Timer</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" onClick={handleReset}>
+                      <RefreshCcw className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Reset Timer</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            {/* <Button
+              variant="destructive"
+              className="w-full"
+              onClick={() => onRemove(id)}
+            >
+              Remove Timer
+            </Button> */}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
   return (
     <div className="flex flex-col gap-4">
       {
