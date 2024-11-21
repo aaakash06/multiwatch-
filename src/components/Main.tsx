@@ -61,12 +61,7 @@ const Main = () => {
   // };
 
   const handleAddClock = () => {
-    addClock({
-      name: "New Clock",
-      description: "New Clock",
-      seconds: 0,
-      isActive: false,
-    });
+    addClock();
     toast.success("Clock added successfully!");
   };
 

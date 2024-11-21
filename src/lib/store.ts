@@ -5,8 +5,18 @@ import { create } from "zustand";
 
 const storeObject: StateCreator<ClockStore> = (set, get) => ({
   clocks: [],
-  addClock: (clock: Clock) =>
-    set((state) => ({ clocks: [...state.clocks, clock] })),
+  addClock: () =>
+    set((state) => ({
+      clocks: [
+        ...state.clocks,
+        {
+          name: `Clock ${state.clocks.length + 1}`,
+          description: "New Clock",
+          seconds: 0,
+          isActive: false,
+        },
+      ],
+    })),
   deleteClock: (index: number) =>
     set((state) => ({ clocks: state.clocks.filter((_, i) => i !== index) })),
   clearClocks: () => set({ clocks: [], activeClocks: [] }),
