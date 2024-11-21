@@ -35,7 +35,8 @@ import { Clock } from "@/lib/types";
 import useClockStore from "@/lib/store";
 
 const Main = () => {
-  const { clocks, addClock, deleteClock, clearClocks } = useClockStore();
+  const { clocks, addClock, deleteClock, clearClocks, getClock } =
+    useClockStore();
   const [gridView, setGridView] = useState<boolean>(true);
 
   // const container = {
@@ -80,13 +81,13 @@ const Main = () => {
   };
 
   const TimerCard = ({ id }: { id: number }) => {
-    const [seconds, setSeconds] = useState(0);
-    const [isActive, setIsActive] = useState(false);
-    const [isPaused, setIsPaused] = useState(false);
+    const clock = getClock(id);
+    const [seconds, setSeconds] = useState(clock?.seconds || 0);
+    const [isActive, setIsActive] = useState(clock?.isActive || false);
 
     useEffect(() => {
       let interval = null;
-      if (isActive && !isPaused) {
+      if (isActive) {
         interval = setInterval(() => {
           setSeconds((seconds) => seconds + 1);
         }, 1000);
@@ -96,11 +97,10 @@ const Main = () => {
           clearInterval(interval);
         }
       };
-    }, [isActive, isPaused]);
+    }, [isActive]);
 
     const handleStart = () => {
       setIsActive(true);
-      setIsPaused(false);
     };
 
     const handlePause = () => {
@@ -110,7 +110,6 @@ const Main = () => {
     const handleReset = () => {
       setSeconds(0);
       setIsActive(false);
-      setIsPaused(false);
     };
 
     return (
