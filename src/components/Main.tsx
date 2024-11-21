@@ -119,7 +119,7 @@ const Main = () => {
 
           <div className="space-y-3">
             <div className="flex justify-center space-x-2">
-              {!isActive || isPaused ? (
+              {!isActive ? (
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
