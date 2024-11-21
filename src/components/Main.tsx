@@ -31,12 +31,7 @@ import {
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatTime } from "@/lib/utils";
-
-interface Tempus {
-  name: string;
-  description: string;
-  time: number; // in seconds
-}
+import { Clock, Clock } from "@/lib/types";
 
 const TimerCard = ({
   id,
@@ -142,7 +137,7 @@ const TimerCard = ({
 };
 
 const Main = () => {
-  const [clocks, setClocks] = useState<Tempus[]>([]);
+  const [clocks, setClocks] = useState<Clock[]>([]);
 
   const [gridView, setGridView] = useState<boolean>(true);
 
@@ -287,7 +282,7 @@ const Main = () => {
               gridView ? "md:grid-cols-2 lg:grid-cols-3" : ""
             }`}
           >
-            {clocks.map((clock: Tempus, index: number) => (
+            {clocks.map((clock: Clock, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: -20 }}
