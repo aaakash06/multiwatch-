@@ -34,17 +34,7 @@ import { formatTime } from "@/lib/utils";
 import { Clock } from "@/lib/types";
 import useClockStore from "@/lib/store";
 
-const TimerCard = ({
-  id,
-  onAdd,
-  onRemove,
-  hasTimer,
-}: {
-  id: number;
-  onAdd: (id: number) => void;
-  onRemove: (id: number) => void;
-  hasTimer: boolean;
-}) => {
+const TimerCard = ({ id }: { id: number }) => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -319,13 +309,7 @@ const Main = () => {
                   </AlertDialog>
                 </div>
                 <div className=" pb-4 rounded-2xl ">
-                  <TimerCard
-                    key={index}
-                    id={index}
-                    hasTimer={activeTimers.includes(index)}
-                    onAdd={handleAddTimer}
-                    onRemove={handleRemoveTimer}
-                  />
+                  <TimerCard id={index} />
                 </div>
               </motion.div>
             ))}
