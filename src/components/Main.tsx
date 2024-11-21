@@ -297,7 +297,7 @@ const Main = () => {
                   duration: 0.3,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col rounded-2xl  w-[22rem] border border-primary/10"
+                className="flex flex-col rounded-2xl hover:shadow-lg hover:shadow-primary/10 transition-all duration-300  w-[22rem] border border-primary/10"
               >
                 <div className="flex justify-between px-8 py-6">
                   <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
@@ -334,7 +334,7 @@ const Main = () => {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-                <div className=" pb-4 rounded-2xl bg-yellow-500">
+                <div className=" pb-4 rounded-2xl ">
                   <TimerCard
                     key={index}
                     id={index}
