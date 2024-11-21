@@ -333,7 +333,7 @@ const Main = () => {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-                <div className="flex flex-col gap-8 px-8 py-4 rounded-2xl ">
+                <div className=" py-4 rounded-2xl ">
                   <TimerCard
                     key={index}
                     id={index}
