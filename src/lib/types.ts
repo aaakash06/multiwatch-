@@ -1,4 +1,5 @@
 export interface Clock {
+  id: string;
   name: string;
   description: string;
   centiseconds: number;
@@ -17,5 +18,6 @@ export interface ClockStore {
   setClock: (index: number, clock: Clock) => void;
   isRehydrating: boolean;
   setIsRehydrating: (value: boolean) => void;
-  setReset: (index: number) => void;
+  setReset: (index: number | string) => void;
+  reorderClocks: (newOrder: Clock[]) => void;
 }

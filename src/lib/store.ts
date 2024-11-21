@@ -15,6 +15,7 @@ const storeObject: StateCreator<ClockStore> = (set, get) => ({
           centiseconds: 0,
           isActive: false,
           reset: false,
+          id: crypto.randomUUID(),
         },
       ],
     })),
@@ -35,12 +36,13 @@ const storeObject: StateCreator<ClockStore> = (set, get) => ({
     })),
   isRehydrating: true,
   setIsRehydrating: (value: boolean) => set({ isRehydrating: value }),
-  setReset: (index: number) =>
+  setReset: (index: number | string) =>
     set((state) => ({
       clocks: state.clocks.map((c, i) =>
         i === index ? { ...c, reset: !c.reset } : c
       ),
     })),
+  reorderClocks: (newOrder: Clock[]) => set({ clocks: newOrder }),
 });
 
 const useClockStore = create(
