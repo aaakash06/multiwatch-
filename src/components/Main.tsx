@@ -117,7 +117,7 @@ const Main = () => {
             {formatTime(seconds)}
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 mt-7">
             <div className="flex justify-center space-x-2">
               {!isActive ? (
                 <TooltipProvider>
@@ -265,7 +265,7 @@ const Main = () => {
                 className="flex flex-col rounded-2xl   w-[22rem] border border-primary/10"
               >
                 <div className="w-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 ">
-                  <div className="flex justify-between px-8 py-6">
+                  <div className="flex justify-between px-8 pt-6">
                     <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
                       Clock {index + 1}
                     </h3>
