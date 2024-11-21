@@ -262,45 +262,47 @@ const Main = () => {
                   duration: 0.3,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col rounded-2xl hover:shadow-lg hover:shadow-primary/10 transition-all duration-300  w-[22rem] border border-primary/10"
+                className="flex flex-col rounded-2xl   w-[22rem] border border-primary/10"
               >
-                <div className="flex justify-between px-8 py-6">
-                  <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
-                    {clock.name}
-                  </h3>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="flex gap-2 items-center"
-                      >
-                        <Trash className="size-4 text-destructive" />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
-                          Are you sure you want to delete this clock?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This action cannot be undone. This will permanently
-                          delete this clock from local storage.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => handleDeleteClock(index)}
-                          className="text-destructive"
+                <div className="w-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 ">
+                  <div className="flex justify-between px-8 py-6">
+                    <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
+                      Clock {index + 1}
+                    </h3>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          className="flex gap-2 items-center"
                         >
-                          Delete
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
-                <div className=" pb-4 rounded-2xl ">
-                  <TimerCard id={index} />
+                          <Trash className="size-4 text-destructive" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Are you sure you want to delete this clock?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            delete this clock from local storage.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDeleteClock(index)}
+                            className="text-destructive"
+                          >
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                  <div className=" pb-4 rounded-2xl ">
+                    <TimerCard id={index} />
+                  </div>
                 </div>
               </motion.div>
             ))}
