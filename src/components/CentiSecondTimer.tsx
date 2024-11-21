@@ -5,18 +5,18 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { formatTime } from "@/lib/utils";
 const CentisecondTimer = ({ id }: { id: number }) => {
-  const { getClock } = useClockStore();
+  const { getClock, setClock } = useClockStore();
   const clock = getClock(id);
   const [centiseconds, setCentiseconds] = useState(0);
 
-  // useEffect(() => {
-  //   const handleBeforeUnload = (event: Event) => {
-  //     event.preventDefault();
-  //     setClock(id, { ...clock, isActive: false, seconds: seconds });
-  //   };
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-  //   return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  // }, [seconds]);
+  useEffect(() => {
+    const handleBeforeUnload = (event: Event) => {
+      event.preventDefault();
+      setClock(id, { ...clock, isActive: false, centiseconds: centiseconds });
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [centiseconds]);
 
   useEffect(() => {
     let interval = null;
