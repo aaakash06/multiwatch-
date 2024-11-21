@@ -171,17 +171,9 @@ const Main = () => {
     deleteClock(index);
     toast.success("Clock deleted successfully!");
   };
-
-  const [activeTimers, setActiveTimers] = useState<number[]>([]);
-
-  const handleAddTimer = (id: number) => {
-    setActiveTimers((prev) => [...prev, id]);
   };
 
-  const handleRemoveTimer = (id: number) => {
-    setActiveTimers((prev) => prev.filter((timerId) => timerId !== id));
-  };
-
+  
   return (
     <div className="flex flex-col gap-4">
       {
