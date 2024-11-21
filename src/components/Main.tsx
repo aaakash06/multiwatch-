@@ -40,6 +40,7 @@ const Main = () => {
   const [gridView, setGridView] = useState<boolean>(true);
 
   // const container = {
+  // const container = {
   //   hidden: { opacity: 0 },
   //   show: {
   //     opacity: 1,
@@ -78,11 +79,20 @@ const Main = () => {
   const TimerCard = ({ id }: { id: number }) => {
     const clock = getClock(id);
     const [seconds, setSeconds] = useState(clock.seconds || 0);
-    const [isActive, setIsActive] = useState(clock.isActive || false);
+
+    useEffect(() => {
+      const handleUnload = () => {
+        setClock(id, { ...clock, isActive: false, seconds: seconds });
+      };
+      document.addEventListener("onunload", handleUnload);
+      return () => {
+        document.removeEventListener("onunload", handleUnload);
+      };
+    }, []);
 
     useEffect(() => {
       let interval = null;
-      if (isActive) {
+      if (clock.isActive) {
         interval = setInterval(() => {
           setSeconds((seconds) => seconds + 1);
         }, 1000);
@@ -92,7 +102,7 @@ const Main = () => {
           clearInterval(interval);
         }
       };
-    }, [isActive]);
+    }, [clock.isActive]);
 
     const handleStart = () => {
       setClock(id, { ...clock, isActive: true });
@@ -119,7 +129,7 @@ const Main = () => {
 
           <div className="space-y-3 mt-7">
             <div className="flex justify-center space-x-2">
-              {!isActive ? (
+              {!clock.isActive ? (
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
