@@ -7,4 +7,6 @@ export interface Clock {
 export interface ClockStore {
   clocks: Clock[];
   addClock: (clock: Clock) => void;
+  deleteClock: (index: number) => void;
+  clearClocks: () => void;
 }

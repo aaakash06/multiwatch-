@@ -138,7 +138,7 @@ const TimerCard = ({
 };
 
 const Main = () => {
-  const { clocks, addClock } = useClockStore();
+  const { clocks, addClock, deleteClock, clearClocks } = useClockStore();
   const [gridView, setGridView] = useState<boolean>(true);
 
   // const container = {
@@ -173,13 +173,12 @@ const Main = () => {
   };
 
   const handleClearClocks = () => {
-    setClocks([]);
+    clearClocks();
     toast.success("All clocks cleared.");
   };
 
   const handleDeleteClock = (index: number) => {
-    const updatedClocks = [...clocks].filter((_, i) => i !== index);
-    setClocks(updatedClocks);
+    deleteClock(index);
     toast.success("Clock deleted successfully!");
   };
 
