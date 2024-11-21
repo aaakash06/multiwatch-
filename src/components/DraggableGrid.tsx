@@ -123,3 +123,67 @@ const DraggableGrid = () => {
 };
 
 export default DraggableGrid;
+
+// {clocks.map((clock: Clock, index: number) => (
+//   <motion.div
+//     key={index}
+//     initial={{ opacity: 0, y: -20 }}
+//     animate={{ opacity: 1, y: 0 }}
+//     transition={{
+//       delay: 0.3 + index * 0.1,
+//       duration: 0.3,
+//       ease: "easeInOut",
+//     }}
+//     drag
+//     dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+//     dragElastic={0.1}
+//     dragTransition={{
+//       bounceStiffness: 600,
+//       bounceDamping: 20,
+//     }}
+//     whileDrag={{ scale: 1.05, zIndex: 1 }}
+//     className="flex flex-col rounded-2xl w-[22rem] border border-primary/10 cursor-move"
+//   >
+//     <div className="w-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 ">
+//       <div className="flex justify-between px-8 pt-6">
+//         <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
+//           Clock {index + 1}
+//         </h3>
+//         <AlertDialog>
+//           <AlertDialogTrigger asChild>
+//             <Button
+//               variant="ghost"
+//               className="flex gap-2 items-center"
+//             >
+//               <Trash className="size-4 text-destructive" />
+//             </Button>
+//           </AlertDialogTrigger>
+//           <AlertDialogContent>
+//             <AlertDialogHeader>
+//               <AlertDialogTitle>
+//                 Are you sure you want to delete this clock?
+//               </AlertDialogTitle>
+//               <AlertDialogDescription>
+//                 This action cannot be undone. This will
+//                 permanently delete this clock from local
+//                 storage.
+//               </AlertDialogDescription>
+//             </AlertDialogHeader>
+//             <AlertDialogFooter>
+//               <AlertDialogCancel>Cancel</AlertDialogCancel>
+//               <AlertDialogAction
+//                 onClick={() => handleDeleteClock(index)}
+//                 className="text-destructive"
+//               >
+//                 Delete
+//               </AlertDialogAction>
+//             </AlertDialogFooter>
+//           </AlertDialogContent>
+//         </AlertDialog>
+//       </div>
+//       <div className=" pb-4 rounded-2xl ">
+//         <TimerCard id={index} />
+//       </div>
+//     </div>
+//   </motion.div>
+// ))}
