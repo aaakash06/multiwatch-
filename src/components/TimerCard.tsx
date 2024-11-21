@@ -34,7 +34,7 @@ const TimerCard = ({ id }: { id: number }) => {
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, []);
+  }, [seconds]);
 
   useEffect(() => {
     let interval = null;
