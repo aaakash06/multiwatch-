@@ -1,7 +1,9 @@
 export interface Clock {
   name: string;
   description: string;
-  time: number; // in seconds
+  seconds: number;
+  id: number;
+  isActive: boolean;
 }
 export interface ClockStore {
   clocks: Clock[];
