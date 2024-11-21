@@ -32,7 +32,15 @@ const CentisecondTimer = ({ id }: { id: number }) => {
     };
   }, [clock.isActive]);
 
-  return <div>{formatTime(centiseconds)}</div>;
+  const time = formatTime(centiseconds);
+
+  return (
+    <>
+      <span>{time.slice(0, 8)}.</span>
+
+      <span className="px-1 text-sm">{time.split(":")[3]}</span>
+    </>
+  );
 };
 
 export default CentisecondTimer;
