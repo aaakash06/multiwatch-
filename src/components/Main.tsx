@@ -92,68 +92,51 @@ const TimerCard = ({
         <div className="text-2xl font-bold text-center my-4">
           {formatTime(seconds)}
         </div>
-        {hasTimer ? (
-          <div className="space-y-3">
-            <div className="flex justify-center space-x-2">
-              {!isActive || isPaused ? (
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={handleStart}
-                      >
-                        <PlayCircle className="h-4 w-4" />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Start Timer</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ) : (
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={handlePause}
-                      >
-                        <PauseCircle className="h-4 w-4" />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Pause Timer</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              )}
+
+        <div className="space-y-3">
+          <div className="flex justify-center space-x-2">
+            {!isActive || isPaused ? (
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" onClick={handleReset}>
-                      <RefreshCcw className="h-4 w-4" />
+                    <Button variant="outline" size="icon" onClick={handleStart}>
+                      <PlayCircle className="h-4 w-4" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Reset Timer</TooltipContent>
+                  <TooltipContent>Start Timer</TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-            </div>
-            <Button
-              variant="destructive"
-              className="w-full"
-              onClick={() => onRemove(id)}
-            >
-              Remove Timer
-            </Button>
+            ) : (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" onClick={handlePause}>
+                      <PauseCircle className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Pause Timer</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size="icon" onClick={handleReset}>
+                    <RefreshCcw className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Reset Timer</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
-        ) : (
           <Button
-            variant="default"
+            variant="destructive"
             className="w-full"
-            onClick={() => onAdd(id)}
+            onClick={() => onRemove(id)}
           >
-            Add Timer
+            Remove Timer
           </Button>
-        )}
+        </div>
       </CardContent>
     </Card>
   );
