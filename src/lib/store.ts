@@ -12,7 +12,7 @@ const storeObject: StateCreator<ClockStore> = (set, get) => ({
         {
           name: `Clock ${state.clocks.length + 1}`,
           description: "New Clock",
-          seconds: 0,
+          centiseconds: 0,
           isActive: false,
         },
       ],

@@ -1,7 +1,7 @@
 export interface Clock {
   name: string;
   description: string;
-  seconds: number;
+  centiseconds: number;
   isActive: boolean;
 }
 export interface ClockStore {
