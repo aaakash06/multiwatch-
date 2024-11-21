@@ -282,71 +282,69 @@ const Main = () => {
             </div>
           </div>
 
-          <div className="flex justify-center w-full ">
-            <div
-              className={`grid w-full gap-6 grid-cols-1 bg-blue-500 col-span-1  ${
-                gridView ? "md:grid-cols-2 lg:grid-cols-3" : ""
-              }`}
-            >
-              {clocks.map((clock: Tempus, index: number) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 0.3 + index * 0.1,
-                    duration: 0.3,
-                    ease: "easeInOut",
-                  }}
-                  className="flex flex-col rounded-2xl  border border-primary/10"
-                >
-                  <div className="flex justify-between px-8 py-6">
-                    <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
-                      Clock {index + 1}
-                    </h3>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          className="flex gap-2 items-center"
+          <div
+            className={`grid w-full gap-6 grid-cols-1 place-items-center col-span-1   ${
+              gridView ? "md:grid-cols-2 lg:grid-cols-3" : ""
+            }`}
+          >
+            {clocks.map((clock: Tempus, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.3 + index * 0.1,
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+                className="flex flex-col rounded-2xl  w-[22rem] border border-primary/10"
+              >
+                <div className="flex justify-between px-8 py-6">
+                  <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
+                    Clock {index + 1}
+                  </h3>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        className="flex gap-2 items-center"
+                      >
+                        <Trash className="size-4 text-destructive" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          Are you sure you want to delete this clock?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently
+                          delete this clock from local storage.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={() => handleDeleteClock(index)}
+                          className="text-destructive"
                         >
-                          <Trash className="size-4 text-destructive" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>
-                            Are you sure you want to delete this clock?
-                          </AlertDialogTitle>
-                          <AlertDialogDescription>
-                            This action cannot be undone. This will permanently
-                            delete this clock from local storage.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={() => handleDeleteClock(index)}
-                            className="text-destructive"
-                          >
-                            Delete
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
-                  <div className=" pb-4 rounded-2xl bg-yellow-500">
-                    <TimerCard
-                      key={index}
-                      id={index}
-                      hasTimer={activeTimers.includes(index)}
-                      onAdd={handleAddTimer}
-                      onRemove={handleRemoveTimer}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
+                <div className=" pb-4 rounded-2xl bg-yellow-500">
+                  <TimerCard
+                    key={index}
+                    id={index}
+                    hasTimer={activeTimers.includes(index)}
+                    onAdd={handleAddTimer}
+                    onRemove={handleRemoveTimer}
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       }
