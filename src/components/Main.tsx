@@ -83,9 +83,8 @@ const TimerCard = ({
   };
 
   return (
-    <Card className="transition-all duration-300 hover:shadow-lg">
+    <Card className="transition-all duration-300 bg-transparent border-0">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">Timer {id}</CardTitle>
         <Badge variant="secondary">{hasTimer ? "Active" : "Inactive"}</Badge>
       </CardHeader>
       <CardContent>
@@ -334,7 +333,7 @@ const Main = () => {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-                <div className="flex flex-col gap-8 px-8 py-4 rounded-2xl bg-secondary/50">
+                <div className="flex flex-col gap-8 px-8 py-4 rounded-2xl ">
                   <TimerCard
                     key={index}
                     id={index}
