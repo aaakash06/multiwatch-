@@ -12,21 +12,13 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 // import { Badge } from "@/components/ui/badge";
 import { formatTime } from "@/lib/utils";
 import useClockStore from "@/lib/store";
+import { isAbsolute } from "path";
 const TimerCard = ({ id }: { id: number }) => {
   const { getClock, setClock } = useClockStore();
   const clock = getClock(id);
   const [seconds, setSeconds] = useState(clock.seconds || 0);
+  const [milliseconds, setMilliseconds] = useState(0);
 
-  // useEffect(() => {
-  //   const handleUnload = (event: BeforeUnloadEvent) => {
-  //     event.preventDefault();
-  //     setClock(id, { ...clock, isActive: false, seconds: seconds });
-  //   };
-  //   window.addEventListener("beforeunload", handleUnload);
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleUnload);
-  //   };
-  // }, []);
   useEffect(() => {
     const handleBeforeUnload = (event: Event) => {
       event.preventDefault();
