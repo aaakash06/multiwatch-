@@ -3,8 +3,9 @@
 import useClockStore from "@/lib/store";
 import { useEffect } from "react";
 import { useState } from "react";
+import { formatTime } from "@/lib/utils";
 const CentisecondTimer = ({ id }: { id: number }) => {
-  const { getClock, setClock } = useClockStore();
+  const { getClock } = useClockStore();
   const clock = getClock(id);
   const [centiseconds, setCentiseconds] = useState(0);
 
@@ -21,7 +22,7 @@ const CentisecondTimer = ({ id }: { id: number }) => {
     let interval = null;
     if (clock.isActive) {
       interval = setInterval(() => {
-        setCentiseconds((centiseconds) => (centiseconds + 1) % 100);
+        setCentiseconds((centiseconds) => centiseconds + 1);
       }, 10);
     }
     return () => {
@@ -31,7 +32,7 @@ const CentisecondTimer = ({ id }: { id: number }) => {
     };
   }, [clock.isActive]);
 
-  return <div>{centiseconds.toString().padStart(2, "0")}</div>;
+  return <div>{formatTime(centiseconds)}</div>;
 };
 
 export default CentisecondTimer;
