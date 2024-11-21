@@ -60,7 +60,11 @@ const TimerCard = ({
         setSeconds((seconds) => seconds + 1);
       }, 1000);
     }
-    return () => clearInterval(interval);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
   }, [isActive, isPaused]);
 
   const handleStart = () => {
