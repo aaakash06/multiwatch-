@@ -1,11 +1,7 @@
-import { Clock } from "./types";
+import { Clock, ClockStore } from "./types";
 import { persist } from "zustand/middleware";
 import { StateCreator } from "zustand";
 import { create } from "zustand";
-interface ClockStore {
-  clocks: Clock[];
-  addClock: (clock: Clock) => void;
-}
 
 const storeObject: StateCreator<ClockStore> = (set, get) => ({
   clocks: [],
