@@ -9,10 +9,8 @@ const CentisecondTimer = ({ id }: { id: number }) => {
   const clock = getClock(id);
   const [centiseconds, setCentiseconds] = useState(clock.centiseconds || 0);
   useEffect(() => {
-    console.log(clock.isActive, "isActive");
-
-    console.log(clock.centiseconds, "centiseconds");
-  }, [clock.centiseconds]);
+    setCentiseconds(clock.centiseconds);
+  }, [clock.reset]);
 
   useEffect(() => {
     const handleBeforeUnload = (event: Event) => {

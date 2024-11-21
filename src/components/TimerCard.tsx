@@ -13,7 +13,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import useClockStore from "@/lib/store";
 import CentisecondTimer from "./CentiSecondTimer";
 const TimerCard = ({ id }: { id: number }) => {
-  const { getClock, setClock } = useClockStore();
+  const { getClock, setClock, setReset } = useClockStore();
   const clock = getClock(id);
 
   const handleStart = () => {
@@ -25,6 +25,7 @@ const TimerCard = ({ id }: { id: number }) => {
   };
 
   const handleReset = () => {
+    setReset(id);
     setClock(id, { ...clock, isActive: false, centiseconds: 0 });
   };
 
