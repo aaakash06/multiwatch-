@@ -296,7 +296,7 @@ const Main = () => {
                   duration: 0.3,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col rounded-2xl border border-primary/10"
+                className="flex flex-col rounded-2xl max-w-[22rem] border border-primary/10"
               >
                 <div className="flex justify-between px-8 py-6">
                   <h3 className="font-bold text-2xl md:text-3xl tracking-tighter ">
