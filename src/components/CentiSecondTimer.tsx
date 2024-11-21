@@ -9,6 +9,7 @@ const CentisecondTimer = ({ id }: { id: number }) => {
   const clock = getClock(id);
   const [centiseconds, setCentiseconds] = useState(clock.centiseconds || 0);
   useEffect(() => {
+    console.log(clock.reset, "reset");
     setCentiseconds(clock.centiseconds);
   }, [clock.reset]);
 

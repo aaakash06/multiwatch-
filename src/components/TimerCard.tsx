@@ -25,8 +25,8 @@ const TimerCard = ({ id }: { id: number }) => {
   };
 
   const handleReset = () => {
-    setReset(id);
     setClock(id, { ...clock, isActive: false, centiseconds: 0 });
+    setReset(id);
   };
 
   return (
