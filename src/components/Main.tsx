@@ -28,7 +28,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatTime } from "@/lib/utils";
 
@@ -85,7 +85,7 @@ const TimerCard = ({
   return (
     <Card className="transition-all duration-300 bg-transparent border-0">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <Badge variant="secondary">{hasTimer ? "Active" : "Inactive"}</Badge>
+        {/* <Badge variant="secondary">{hasTimer ? "Active" : "Inactive"}</Badge> */}
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold text-center my-4">
@@ -128,13 +128,13 @@ const TimerCard = ({
               </Tooltip>
             </TooltipProvider>
           </div>
-          <Button
+          {/* <Button
             variant="destructive"
             className="w-full"
             onClick={() => onRemove(id)}
           >
             Remove Timer
-          </Button>
+          </Button> */}
         </div>
       </CardContent>
     </Card>
