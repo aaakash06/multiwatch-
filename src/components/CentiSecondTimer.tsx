@@ -36,9 +36,12 @@ const CentisecondTimer = ({ id }: { id: number }) => {
 
   return (
     <>
-      <span>{time.slice(0, 8)}.</span>
-
-      <span className="px-1 text-sm">{time.split(":")[3]}</span>
+      <span className="relative">
+        {time.slice(0, 8)}.
+        <span className="absolute bottom-[6px] -right-5 text-sm">
+          {time.split(":")[3]}
+        </span>
+      </span>
     </>
   );
 };
