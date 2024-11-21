@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { LayoutGrid, LayoutList, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,15 +15,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+
 import { Clock } from "@/lib/types";
 import useClockStore from "@/lib/store";
 import TimerCard from "./TimerCard";
+import { Reorder } from "framer-motion";
 
 const Main = () => {
   const { clocks, addClock, deleteClock, clearClocks } = useClockStore();
@@ -155,7 +151,12 @@ const Main = () => {
                   duration: 0.3,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col rounded-2xl   w-[22rem] border border-primary/10"
+                drag
+                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                dragElastic={0.1}
+                dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+                whileDrag={{ scale: 1.05, zIndex: 1 }}
+                className="flex flex-col rounded-2xl w-[22rem] border border-primary/10 cursor-move"
               >
                 <div className="w-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 ">
                   <div className="flex justify-between px-8 pt-6">
