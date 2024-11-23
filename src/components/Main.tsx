@@ -19,7 +19,6 @@ import {
 import { Clock } from "@/lib/types";
 import useClockStore from "@/lib/store";
 import TimerCard from "./TimerCard";
-import DraggableGrid from "./DraggableGrid";
 const Main = () => {
   const { clocks, addClock, deleteClock, clearClocks } = useClockStore();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
