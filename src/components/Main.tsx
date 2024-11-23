@@ -22,6 +22,7 @@ import TimerCard from "./TimerCard";
 import DraggableGrid from "./DraggableGrid";
 const Main = () => {
   const { clocks, addClock, deleteClock, clearClocks } = useClockStore();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [gridView, setGridView] = useState<boolean>(true);
   const [draggable, setDraggable] = useState<boolean>(false);
   // const container = {
