@@ -11,7 +11,7 @@ const CentisecondTimer = ({ id }: { id: number }) => {
   useEffect(() => {
     console.log(clock.reset, "reset");
     setCentiseconds(clock.centiseconds);
-  }, [clock.reset]);
+  }, [clock.reset, clock.centiseconds]);
 
   useEffect(() => {
     const handleBeforeUnload = (event: Event) => {
