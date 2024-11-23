@@ -20,7 +20,7 @@ const CentisecondTimer = ({ id }: { id: number }) => {
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [centiseconds]);
+  }, [centiseconds, clock, id, setClock]);
 
   useEffect(() => {
     let interval = null;
