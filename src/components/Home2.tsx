@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 
 export default function HomeScreen() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [timers, setTimers] = useState([
     { id: 1, time: "00:00:00" },
     { id: 2, time: "00:00:00" },
